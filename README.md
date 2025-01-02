@@ -1,41 +1,96 @@
-# Coletor de Nomes e Tags de Jogadores
 
-Este projeto coleta **nomes** e **tags** de jogadores da página [League of Graphs](https://www.leagueofgraphs.com/pt/rankings/summoners) e os salva em dois arquivos JSON: um contendo os **nomes** e outro contendo as **tags**.
+# **League Scrapper**
 
-## Como executar
+O **League Scrapper** é uma biblioteca Python para coletar **nomes**, **tags**, e informações regionais de jogadores a partir da página [League of Graphs](https://www.leagueofgraphs.com/pt/rankings/summoners). Os dados coletados são salvos em um arquivo JSON para fácil reutilização em outros projetos.
 
-1. **Clone ou baixe este repositório para sua máquina local**.
+## **Recursos**
+- Coleta dados de jogadores de várias páginas simultaneamente.
+- Suporte para múltiplas regiões.
+- Dados salvos em formato JSON para integração em outros sistemas.
 
-2. **Instale as dependências necessárias**:
+---
 
-   No terminal, navegue até o diretório do projeto e execute o seguinte comando para instalar as bibliotecas necessárias (como `requests` e `BeautifulSoup`):
+## **Instalação**
+### **Via PyPI**
+Instale diretamente do [PyPI](https://pypi.org/project/league-scrapper/):
+```bash
+pip install league-scrapper
+```
 
+### **Manual**
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/alexandremendesb12/league-scrapper.git
+   cd league-scrapper
+   ```
+
+2. Instale as dependências:
    ```bash
    pip install -r requirements.txt
+   ```
 
-3. **Execute o arquivo main.py no terminal**:
+3. Instale o pacote localmente:
+   ```bash
+   pip install .
+   ```
 
-   No terminal, execute o seguinte comando para iniciar o processo de coleta de dados:
+---
 
-    ```bash  
-    python main.py
+## **Como Usar**
 
-  Isso iniciará o processo de scraping e salvará os resultados nos arquivos names.json (contendo apenas os nomes) e tags.json (contendo apenas as tags), 
-  localizados no diretório do projeto.
+### **Exemplo de Uso**
+Aqui está um exemplo básico de como usar a biblioteca para coletar e salvar dados:
+```python
+from league_scrapper import Main
 
-**Alterando o número de registros**
+# Configuração do coletor
+scrapper = Main()
 
-Por padrão, o código coleta os registros de 100 jogadores por página. Se você quiser obter mais registros, basta alterar o número de páginas processadas no arquivo main.py.
+# Coleta dados de 5 páginas da região "br"
+data = scrapper.collect_data(number_of_pages=5, region="br")
 
-**Modificando o número de páginas**
+# Salva os dados em um arquivo JSON
+scrapper.save_data(data, "dados_jogadores.json")
+```
 
-Dentro da função main(), cada página corresponde a um GET que coleta os dados de 100 jogadores. Para aumentar o número de páginas, você pode alterar o valor passado na chamada da função main().
+### **Parâmetros**
+- `number_of_pages` (int): Número de páginas a serem coletadas. Cada página contém até 100 jogadores.
+- `region` (str): Região para buscar os jogadores (ex.: "br", "euw", "na").
 
-Exemplo:
+---
 
-Se você quiser processar 5 páginas (500 jogadores), abra o arquivo main.py e altere a linha dentro do bloco if __name__ == '__main__': para:
-  ```bash
-    if __name__ == '__main__':
-    main(5)  # Altere o valor '5' para o número de páginas que deseja processar
+## **Estrutura do Projeto**
 
+- **league_scrapper/**
+  - `__init__.py`: Arquivo de inicialização do pacote.
+  - `main.py`: Arquivo principal para execução.
+  - **scripts/**
+    - `league_players_scrapper.py`: Responsável por realizar o scraping dos dados.
+    - `saver.py`: Utilitário para salvar os dados em formato JSON.
 
+---
+
+## **Funcionalidades Avançadas**
+
+### **Requisições Simultâneas**
+Se o número de páginas a ser processado for maior que 5, o código utiliza `ThreadPoolExecutor` para melhorar o desempenho.
+
+### **Execução via Terminal**
+O projeto pode ser executado diretamente no terminal:
+```bash
+python -m league_scrapper.main
+```
+
+Você será solicitado a inserir:
+1. A região dos jogadores (ex.: "br").
+2. O número de páginas que deseja processar.
+
+---
+
+## **Contribuições**
+Sinta-se à vontade para abrir **issues** ou enviar **pull requests** para melhorias no projeto. 
+
+---
+
+## **Licença**
+Este projeto está licenciado sob a [MIT License](LICENSE).
