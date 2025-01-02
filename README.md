@@ -41,10 +41,10 @@ pip install league-scrapper
 ### **Exemplo de Uso**
 Aqui está um exemplo básico de como usar a biblioteca para coletar e salvar dados:
 ```python
-from league_scrapper import Main
+from league_scrapper import LeagueScrapper
 
 # Configuração do coletor
-scrapper = Main()
+scrapper = LeagueScrapper()
 
 # Coleta dados de 5 páginas da região "br"
 data = scrapper.collect_data(number_of_pages=5, region="br")
@@ -78,7 +78,7 @@ Se o número de páginas a ser processado for maior que 5, o código utiliza `Th
 ### **Execução via Terminal**
 O projeto pode ser executado diretamente no terminal:
 ```bash
-python -m league_scrapper.main
+python -m league_scrapper.LeagueScrapper
 ```
 
 Você será solicitado a inserir:
