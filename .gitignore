@@ -1,0 +1,73 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables and settings
+.env
+*.env
+
+# Virtual environment
+venv/
+env/
+ENV/
+.env/
+.venv/
+.ENV/
+
+# Distribution files
+*.egg
+*.egg-info/
+dist/
+build/
+wheels/
+
+# Logs and debug files
+*.log
+*.out
+*.err
+
+# IDE settings and backups
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+
+# MyPy cache
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pylint reports
+pylint-report.txt
+
+# Temporary and backup files
+*.tmp
+*.temp
+*.old
+*.orig
+
+# Package manager files
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# Other
+*.sqlite3
+*.db
