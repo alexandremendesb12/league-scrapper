@@ -1,72 +1,57 @@
+# League Scraper
 
-# League Scrapper
+O League Scraper é uma ferramenta desenvolvida em Python para coletar nomes de jogadores, tags e informações regionais a partir do site League of Graphs. Os dados coletados são salvos em um arquivo JSON, facilitando sua reutilização em outros projetos.
 
-O **League Scrapper** é uma ferramenta desenvolvida em Python para coletar nomes de jogadores, tags e informações regionais a partir do site [League of Graphs](https://www.leagueofgraphs.com). Os dados coletados são salvos em um arquivo JSON, facilitando sua reutilização em outros projetos.
+## Funcionamento
 
-## Recursos
+### Instalação
 
-- Coleta dados de jogadores de várias páginas simultaneamente.
-- Suporta múltiplas regiões.
-- Salva os dados em formato JSON para fácil integração com outros sistemas.
+O projeto é instalado localmente, utilizando o gerenciador de pacotes pip. É necessário criar um ambiente virtual e instalar as dependências listadas no arquivo `requirements.txt`.
 
-## Instalação
+### Configuração
 
-Como o projeto não está mais disponível no PyPI, a instalação deve ser feita localmente. Siga os passos abaixo:
+O projeto utiliza um arquivo de configuração `constants.py` para armazenar as constantes utilizadas no projeto, como a URL base do site League of Graphs e o nome do arquivo de saída.
 
-1. Clone o repositório:
+### Coleta de dados
 
-   ```bash
-   git clone https://github.com/alexandremendesb12/league-scrapper.git
-   ```
+O projeto utiliza a biblioteca `requests` para fazer requisições HTTP ao site League of Graphs e coletar os dados dos jogadores. A coleta de dados é realizada em paralelo, utilizando a biblioteca `concurrent.futures`.
 
-2. Acesse o diretório do projeto:
+### Processamento de dados
 
-   ```bash
-   cd league-scrapper
-   ```
+Os dados coletados são processados utilizando a biblioteca `pandas` e transformados em um DataFrame.
 
-3. Crie um ambiente virtual (recomendado):
+### Salvamento de dados
 
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # No Windows: venv\Scripts\activate
-   ```
+Os dados processados são salvos em um arquivo JSON, utilizando a biblioteca `json`.
 
-4. Instale as dependências:
+## Uso
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+### Execução
 
-## Como Usar
+O projeto é executado utilizando o comando `python main.py`.
 
-Após a instalação, você pode utilizar o League Scrapper em seus scripts Python.
+### Entrada de dados
 
-### Exemplo de Uso
+O usuário é solicitado a entrar com a região e o número de páginas que deseja coletar.
 
-```python
-from league_scrapper import LeagueScrapper
+### Saída
 
-# Inicializa o scrapper para uma região específica
-scrapper = LeagueScrapper(region='br')
+O projeto salva os dados coletados em um arquivo JSON, chamado `players_data.json`.
 
-# Coleta dados de jogadores
-dados_jogadores = scrapper.coletar_dados(paginas=5)
+## Estrutura do projeto
 
-# Salva os dados em um arquivo JSON
-scrapper.salvar_dados(dados_jogadores, 'dados_jogadores.json')
-```
+* `src`: Pasta que contém o código fonte do projeto.
+	+ `main.py`: Arquivo principal do projeto, responsável por executar a coleta e processamento de dados.
+	+ `scraper.py`: Arquivo responsável por coletar os dados do site League of Graphs.
+	+ `processor.py`: Arquivo responsável por processar os dados coletados.
+	+ `utils`: Pasta que contém arquivos de utilidades, como a classe `FileLoader` e a classe `FileSaver`.
+	+ `constants.py`: Arquivo de configuração que armazena as constantes utilizadas no projeto.
 
-Este exemplo inicializa o scrapper para a região brasileira, coleta dados de 5 páginas de jogadores e salva as informações no arquivo `dados_jogadores.json`.
+## Requisitos
 
-## Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e enviar pull requests.
+* Python 3.7 ou superior
+* Bibliotecas listadas no arquivo `requirements.txt`
 
 ## Licença
 
-Este projeto está licenciado sob a Licença Apache 2.0. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-*Nota: Este projeto não é afiliado ao League of Legends ou ao League of Graphs.*
+O projeto é licenciado sob a Licença Apache 2.0. Consulte o arquivo `LICENSE` para mais detalhes.
